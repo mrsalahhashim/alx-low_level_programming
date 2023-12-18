@@ -2,13 +2,16 @@
 
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned int nbits;
+	int a, countbit = 0;
+	unsigned long int current;
+	unsigned long int exclusive = n ^ m;
 
-	for (nbits = 0; n || m; n >>= 1, m >>= 1)
+	for (a = 63; a >= 0; a--)
 	{
-		if ((n & 1) != (m & 1))
-			nbits++;
+		current = exclusive >> a;
+		if (current & 1)
+			countbit++;
 	}
 
-	return (nbits);
+	return (countbit);
 }
